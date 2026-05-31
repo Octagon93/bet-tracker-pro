@@ -197,7 +197,17 @@ export default function Home() {
                 <td className="p-3">{bet.selection}</td>
                 <td className="p-3">{Number(bet.odds).toFixed(2)}</td>
                 <td className="p-3">{Number(bet.stake).toFixed(2)}</td>
-                <td className="p-3">{bet.status}</td>
+                <td
+  className={`p-3 font-bold ${
+    bet.status === "Won"
+      ? "text-green-400"
+      : bet.status === "Lost"
+      ? "text-red-400"
+      : "text-yellow-400"
+  }`}
+>
+  {bet.status}
+</td>
 <td
   className={`p-3 font-bold ${
     Number(bet.profit) > 0
@@ -222,7 +232,13 @@ export default function Home() {
                     className="bg-red-700 px-3 py-1 rounded text-sm"
                   >
                     Lost
-                  </button>
+                 </button>
+                 <button
+  onClick={() => deleteBet(bet.id)}
+  className="bg-zinc-700 px-3 py-1 rounded text-sm"
+>
+  Delete
+</button>
                 </td>
               </tr>
             ))}
