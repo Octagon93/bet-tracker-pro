@@ -198,7 +198,17 @@ export default function Home() {
                 <td className="p-3">{Number(bet.odds).toFixed(2)}</td>
                 <td className="p-3">{Number(bet.stake).toFixed(2)}</td>
                 <td className="p-3">{bet.status}</td>
-                <td className="p-3">{Number(bet.profit).toFixed(2)}</td>
+<td
+  className={`p-3 font-bold ${
+    Number(bet.profit) > 0
+      ? "text-green-400"
+      : Number(bet.profit) < 0
+      ? "text-red-400"
+      : "text-zinc-300"
+  }`}
+>
+  {Number(bet.profit).toFixed(2)}
+</td>
                 <td className="p-3 flex gap-2">
                   <button
                     onClick={() => updateBetStatus(bet, "Won")}
